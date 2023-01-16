@@ -1,0 +1,35 @@
+{
+	"name": "woo-multichannel-product-attributes",
+	"version": "0.0.1",
+	"description": "Manages product attributes across various channels.",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ibndawood/woo-multichannel-product-attributes.git"
+	},
+	"author": "Ventures",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/ibndawood/woo-multichannel-product-attributes/issues"
+	},
+	"homepage": "https://github.com/ibndawood/woo-multichannel-product-attributes#readme",
+	"devDependencies": {
+		"@wordpress/env": "^5.9.0"
+	},
+	"scripts": {
+		"test": "yarn run test-unit-php",
+		"lint-php": "wp-env run cli \"sh -c 'cd /var/www/html/wp-content/plugins/woo-multichannel-product-attributes && php vendor/bin/phpcs'\"",
+		"lint-php:fix": "wp-env run cli \"sh -c 'cd /var/www/html/wp-content/plugins/woo-multichannel-product-attributes && php vendor/bin/phpcbf --report-summary --report-source'\"",
+		"test-unit-php": "wp-env run phpunit 'phpunit -c /var/www/html/wp-content/plugins/woo-multichannel-product-attributes/phpunit.xml.dist --verbose'",
+		"wp-env": "wp-env",
+		"wp-env:start": "wp-env start",
+		"wp-env:setup": "yarn run wp-env:composer-install && yarn run wp-env:activate-plugin && yarn wp-env run cli wp option update blogname 'MCM'",
+		"wp-env:composer-install": "wp-env run composer install",
+		"wp-env:activate-plugin": "wp-env run cli wp plugin activate woo-multichannel-product-attributes && wp-env run tests-cli wp plugin activate woo-multichannel-product-attributes",
+		"wp-env:stop": "wp-env stop",
+		"wp-env:destroy": "wp-env destroy",
+		"wp-env:logs": "wp-env logs"
+	},
+	"engines": {
+		"node": "^16.13.2"
+	}
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ruleset name="WooCommerce Coding Standards">
+	<description>Woo MultiChannel Product Attributes ruleset.</description>
+	
+	<!-- Configs -->
+	<config name="minimum_supported_wp_version" value="5.9" />
+	<config name="testVersion" value="7.2-" />
+
+	<!-- Rules -->
+	<rule ref="WooCommerce-Core" />
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="woo-mcpa" />
+		</properties>
+	</rule>
+
+	<!-- Args to PHPCS: show (p)rogress, show (s)niff codes -->
+	<arg value="ps"/>
+	<arg name="extensions" value="php"/>
+
+	<file>.</file>
+	<exclude-pattern>./vendor/*</exclude-pattern>
+	<exclude-pattern>./node_modules/*</exclude-pattern>
+	<exclude-pattern>./tests/*</exclude-pattern>
+
+    <!-- Do not follow WordPress FileName standards for folders following PSR-4 -->
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<exclude-pattern>src/</exclude-pattern>
+	</rule>
+
+	<rule ref="Squiz.Classes.ClassFileName">
+		<include-pattern>src/</include-pattern>
+	</rule>
+
+	<rule ref="Squiz.Classes.ValidClassName">
+		<include-pattern>src/</include-pattern>
+	</rule>
+
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<exclude-pattern>src/</exclude-pattern>
+	</rule>
+</ruleset>
