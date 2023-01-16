@@ -7,7 +7,7 @@
 
 namespace WooCommerce\Grow\WMCPA\MetaFields\Types;
 
-use \WooCommerce\Grow\WMCPA\MetaFields\AbstractField;
+use \WooCommerce\Grow\WMCPA\Utilities\Helper;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -34,9 +34,9 @@ class Select extends AbstractField {
 	 *
 	 * @param array $field An array holding all the field's data.
 	 */
-	public function render( $field ) {
-		$value   = $this->get_array( $field['value'] );
-		$options = $this->get_array( $field['options'] );
+	public static function render( $field ) {
+		$value   = Helper::get_array( $field['value'] );
+		$options = Helper::get_array( $field['options'] );
 
 		if ( empty( $value ) ) {
 			$value = array( '' );
@@ -44,8 +44,8 @@ class Select extends AbstractField {
 
 		$select = array(
 			'id'      => $field['id'],
-			'class'   => $field['class'],
 			'name'    => $field['name'],
+			'label'   => $field['label'],
 			'value'   => $value,
 			'options' => $options,
 		);

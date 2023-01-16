@@ -41,7 +41,7 @@ class Facebook extends AbstractChannel {
 				'label'  => $this->name,
 				'target' => $prefix . '_product_data',
 			),
-			'panel_html_search' => '<div id="marketplace_suggestions" class="panel woocommerce_options_panel hidden">',
+			//'panel_html_search' => '<div id="marketplace_suggestions" class="panel woocommerce_options_panel hidden">',
 		);
 	}
 
@@ -78,7 +78,7 @@ class Facebook extends AbstractChannel {
 				'enum'        => array( 'new', 'refurbished', 'used' ),
 				'validations' => array( 'required' ),
 				'meta_field'  => array(
-					'location' => array( 'product_setting_tab' ),
+					'location' => array( 'product_settings_tab' ),
 					'args'     => array(
 						'label'         => esc_html__( 'Condition', 'woo-mcpa' ),
 						'type'          => 'select',

@@ -9,7 +9,7 @@
 
 namespace WooCommerce\Grow\WMCPA\Channels;
 
-use WooCommerce\Grow\WMCPA\MetaFields;
+use \WooCommerce\Grow\WMCPA\MetaFields\ProductMetaFields;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -109,12 +109,15 @@ abstract class AbstractChannel {
 		foreach ( $attributes as $key => $attribute ) {
 			if ( isset( $attribute['meta_field'] ) ) {
 				// If a location filter is specified, check if the meta field is assigned to a given location.
-				if ( ! empty( $filter ) && ( ! isset( $attribute['meta_field']['args']['location'] ) || ! in_array( $filter, $attribute['meta_field']['args']['location'] ) ) ) {
+				$meta_field_location = isset( $attribute['meta_field']['location'] ) ? $attribute['meta_field']['location'] : array();
+				
+				if ( ! empty( $filter ) && ! in_array( $filter, $meta_field_location, true) ) {
 					continue;
 				}
 
-				$attribute['meta_field']['args']['id'] = $field_prefix . $key;
-				$meta_fields[ $field_prefix ]          = $attribute['meta_field'];
+				$attribute['meta_field']['args']['id']   = $field_prefix . $key;
+				$attribute['meta_field']['args']['name'] = $field_prefix . $key;
+				$meta_fields[ $field_prefix ]            = $attribute['meta_field'];
 			}
 		}
 
@@ -272,14 +275,17 @@ abstract class AbstractChannel {
 	 * @param string $panel_data The panel data.
 	 */
 	public function product_data_panels( $panel_data ) {
+
 		$tab_settings = $this->get_tab_settings();
+		$meta_fields  = $this->get_meta_fields( 'product_settings_tab' );
 
 		if ( empty( $tab_settings ) ) {
 			return;
 		}
 
 		ob_start();
-		MetaFields::render( $meta_fields );
+		echo 'Hello World';
+		ProductMetaFields::render( $meta_fields );
 		$channel_data_panel = ob_get_clean();
 		$panel_html_search  = isset( $tab_settings['panel_html_search'] ) ? $tab_settings['panel_html_search'] : '';
 		$panel_html_replace = '<div id="' . esc_attr( $tab_settings['args']['target'] ) . '" class="panel woocommerce_options_panel hidden">' . $channel_data_panel;
