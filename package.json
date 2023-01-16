@@ -16,6 +16,7 @@
 		"@wordpress/env": "^5.9.0"
 	},
 	"scripts": {
+		"build": "composer install --no-dev && composer archive --file=$npm_package_name --format=zip",
 		"test": "yarn run test-unit-php",
 		"lint-php": "wp-env run cli \"sh -c 'cd /var/www/html/wp-content/plugins/woo-multichannel-product-attributes && php vendor/bin/phpcs'\"",
 		"lint-php:fix": "wp-env run cli \"sh -c 'cd /var/www/html/wp-content/plugins/woo-multichannel-product-attributes && php vendor/bin/phpcbf --report-summary --report-source'\"",

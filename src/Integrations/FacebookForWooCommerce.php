@@ -41,7 +41,6 @@ class FacebookForWooCommerce extends AbstractIntegration {
 	 * @var array
 	 */
 	protected $meta_key_map = array(
-		'google_product_category' => '_wc_facebook_google_product_category',
-		'gtin'                    => 'fbw_gtin',
+		'condition' => array( 'woo-mcpa_facebook_condition', '_wc_pinterest_condition' ), // TODO: must be added through Pinterest for WooCommerce integration class.
 	);
 }

@@ -34,5 +34,16 @@
 		"platform": {
 			"php": "7.4"
 		}
-	}
+	},
+    "archive": {
+        "exclude": [
+            ".*",
+            "!.gitignore",
+            "node_modules/",
+            "vendor/",
+            "www/",
+            "composer/",
+            "*.yml"
+        ]
+    }
 }

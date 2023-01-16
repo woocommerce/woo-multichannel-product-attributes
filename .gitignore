@@ -4,3 +4,4 @@ npm-debug.log
 vendor/
 .cache/
 .DS_Store
+*.zip
