@@ -13,12 +13,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+/**
+ * Helper utility class.
+ */
 class Helper {
-	
+
 	/**
 	 * This method will force a variable to become an array.
 	 *
-	 * @param  mixed $var The variable to be converted to array.
+	 * @param  mixed  $var       The variable to be converted to array.
+	 * @param  string $delimiter Delimiter for a string to explode.
 	 * @return array
 	 */
 	public static function get_array( $var = false, $delimiter = '' ) {
@@ -37,7 +41,7 @@ class Helper {
 			return explode( $delimiter, $var );
 		}
 
-		// place in array
+		// Place in array.
 		return (array) $var;
 	}
 

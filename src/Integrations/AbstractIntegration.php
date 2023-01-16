@@ -40,6 +40,13 @@ abstract class AbstractIntegration {
 	protected $meta_key_map = array();
 
 	/**
+	 * Specify if the plugin integration adds a tab or not.
+	 *
+	 * @var bool
+	 */
+	protected $has_tab = false;
+
+	/**
 	 * Load the integration methods here.
 	 */
 	public function integrate() {
@@ -47,6 +54,10 @@ abstract class AbstractIntegration {
 			foreach ( $this->meta_key_map as $key => $value ) {
 				ProductMetaDataSynchronizer::instance()->register_to_sync( $key, $value );
 			}
+		}
+
+		if ( $this->has_tab ) {
+			add_filter( 'woo_mcpa_channel_get_tab_settings', array( $this, 'override_tab_settings' ) );
 		}
 	}
 

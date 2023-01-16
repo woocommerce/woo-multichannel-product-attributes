@@ -110,14 +110,14 @@ abstract class AbstractChannel {
 			if ( isset( $attribute['meta_field'] ) ) {
 				// If a location filter is specified, check if the meta field is assigned to a given location.
 				$meta_field_location = isset( $attribute['meta_field']['location'] ) ? $attribute['meta_field']['location'] : array();
-				
-				if ( ! empty( $filter ) && ! in_array( $filter, $meta_field_location, true) ) {
+
+				if ( ! empty( $filter ) && ! in_array( $filter, $meta_field_location, true ) ) {
 					continue;
 				}
 
 				$attribute['meta_field']['args']['id']   = $field_prefix . $key;
 				$attribute['meta_field']['args']['name'] = 'woo_mcpa_meta[' . $field_prefix . $key . ']';
-				$meta_fields[ $field_prefix . $key ]            = $attribute['meta_field'];
+				$meta_fields[ $field_prefix . $key ]     = $attribute['meta_field'];
 			}
 		}
 
@@ -228,12 +228,12 @@ abstract class AbstractChannel {
 	 * Render meta fields in product settings tab.
 	 */
 	protected function render_product_settings_tab_meta_fields() {
-		$meta_fields  = $this->get_meta_fields( 'product_settings_tab' );
+		$meta_fields = $this->get_meta_fields( 'product_settings_tab' );
 
 		if ( empty( $meta_fields ) ) {
 			return;
 		}
-		
+
 		add_action( 'woocommerce_product_data_tabs', array( $this, 'product_data_tabs' ) );
 		add_action( 'woocommerce_product_data_panels', array( $this, 'product_data_panels_start' ), 0 );
 		add_action( 'woocommerce_product_data_panels', array( $this, 'product_data_panels_end' ), 999 );

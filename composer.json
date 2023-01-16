@@ -37,13 +37,7 @@
 	},
     "archive": {
         "exclude": [
-            ".*",
-            "!.gitignore",
-            "node_modules/",
-            "vendor/",
-            "www/",
-            "composer/",
-            "*.yml"
+            "node_modules/"
         ]
     }
 }

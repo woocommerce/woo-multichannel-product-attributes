@@ -36,12 +36,11 @@ class Facebook extends AbstractChannel {
 	protected function init_tab_settings() {
 		$prefix             = $this->get_meta_prefix();
 		$this->tab_settings = array(
-			'id'                => $prefix . $this->get_id(),
-			'args'              => array(
+			'id'   => $prefix . $this->get_id(),
+			'args' => array(
 				'label'  => $this->name,
 				'target' => $prefix . '_product_data',
 			),
-			//'panel_html_search' => '<div id="marketplace_suggestions" class="panel woocommerce_options_panel hidden">',
 		);
 	}
 
