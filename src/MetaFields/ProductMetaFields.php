@@ -7,13 +7,43 @@
 
 namespace WooCommerce\Grow\WMCPA\MetaFields;
 
-use \WooCommerce\Grow\WMCPA\MetaFields\Types\Select;
+use WooCommerce\Grow\WMCPA\MetaFields\Types\Select;
+use WooCommerce\Grow\WMCPA\Traits\SingletonTrait;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 class ProductMetaFields {
+
+    use SingletonTrait;
+
+    /**
+     * Initialzie the product meta fields.
+     */
+    public static function init() {
+        add_action( 'woocommerce_process_product_meta_simple', array( get_called_class(), 'save' ) );
+    }
+
+    /**
+     * Save the meta fields.
+     */
+    public static function save( $product_id ) {
+        $product     = wc_get_product( $product_id );
+        $meta_fields = $_POST[ 'woo_mcpa_meta' ]; // TODO: sanitize
+
+        if ( ! $product ) {
+            return;
+        }
+        
+        if ( ! empty( $meta_fields ) ) {
+            foreach ( $meta_fields as $meta => $value ) {
+                $product->update_meta_data( $meta, $value );
+            }
+
+            $product->save_meta_data();
+        }
+    }
 
 	/**
 	 * Renders the meta fields.

@@ -7,7 +7,7 @@
 
 namespace WooCommerce\Grow\WMCPA\Integrations;
 
-use \WooCommerce\Grow\WMCPA\Utilities\ProductMetaDataSynchronizer;
+use WooCommerce\Grow\WMCPA\Utilities\ProductMetaDataSynchronizer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.

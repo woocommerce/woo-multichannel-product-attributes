@@ -9,7 +9,7 @@
 
 namespace WooCommerce\Grow\WMCPA\Channels;
 
-use \WooCommerce\Grow\WMCPA\MetaFields\ProductMetaFields;
+use WooCommerce\Grow\WMCPA\MetaFields\ProductMetaFields;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -116,8 +116,8 @@ abstract class AbstractChannel {
 				}
 
 				$attribute['meta_field']['args']['id']   = $field_prefix . $key;
-				$attribute['meta_field']['args']['name'] = $field_prefix . $key;
-				$meta_fields[ $field_prefix ]            = $attribute['meta_field'];
+				$attribute['meta_field']['args']['name'] = 'woo_mcpa_meta[' . $field_prefix . $key . ']';
+				$meta_fields[ $field_prefix . $key ]            = $attribute['meta_field'];
 			}
 		}
 
@@ -284,7 +284,6 @@ abstract class AbstractChannel {
 		}
 
 		ob_start();
-		echo 'Hello World';
 		ProductMetaFields::render( $meta_fields );
 		$channel_data_panel = ob_get_clean();
 		$panel_html_search  = isset( $tab_settings['panel_html_search'] ) ? $tab_settings['panel_html_search'] : '';

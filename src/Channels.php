@@ -79,7 +79,7 @@ class Channels {
 	 * Get channel.
 	 *
 	 * @param string $id The Channel ID.
-	 * @return \WooCommerce\Grow\WMCPA\Channels\AbstractChannel
+	 * @return WooCommerce\Grow\WMCPA\Channels\AbstractChannel
 	 * @throws \Exception When invalid channel ID is requested.
 	 */
 	public function get_channel( $id ) {

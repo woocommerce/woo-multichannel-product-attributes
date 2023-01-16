@@ -7,6 +7,11 @@
 
 namespace WooCommerce\Grow\WMCPA;
 
+use WooCommerce\Grow\WMCPA\Channels;
+use WooCommerce\Grow\WMCPA\Integrations;
+use WooCommerce\Grow\WMCPA\Utilities\ProductMetaDataSynchronizer;
+use WooCommerce\Grow\WMCPA\MetaFields\ProductMetaFields;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -72,12 +77,13 @@ class Plugin {
 		$this->channels();
 		$this->integrations();
 		$this->product_meta_data_synchronizer();
+		ProductMetaFields::init();
 	}
 
 	/**
 	 * The Plugin instance.
 	 *
-	 * @return \WooCommerce\Grow\WMCPA\Plugin
+	 * @return WooCommerce\Grow\WMCPA\Plugin
 	 */
 	public static function woo_mcpa() {
 		return self::$instance;
@@ -99,27 +105,27 @@ class Plugin {
 	/**
 	 * Get Channels instance.
 	 *
-	 * @return \WooCommerce\Grow\WMCPA\Channels
+	 * @return WooCommerce\Grow\WMCPA\Channels
 	 */
 	public function channels() {
-		return \WooCommerce\Grow\WMCPA\Channels::instance();
+		return Channels::instance();
 	}
 
 	/**
 	 * Get Integrations instance.
 	 *
-	 * @return \WooCommerce\Grow\WMCPA\Integrations
+	 * @return WooCommerce\Grow\WMCPA\Integrations
 	 */
 	public function integrations() {
-		return \WooCommerce\Grow\WMCPA\Integrations::instance();
+		return Integrations::instance();
 	}
 
 	/**
 	 * Get product meta data synchronizer instance.
 	 *
-	 * @return \WooCommerce\Grow\WMCPA\Utilities\ProductMetaDataSynchronizer
+	 * @return WooCommerce\Grow\WMCPA\Utilities\ProductMetaDataSynchronizer
 	 */
 	public function product_meta_data_synchronizer() {
-		return \WooCommerce\Grow\WMCPA\Utilities\ProductMetaDataSynchronizer::instance();
+		return ProductMetaDataSynchronizer::instance();
 	}
 }

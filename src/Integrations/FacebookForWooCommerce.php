@@ -7,7 +7,7 @@
 
 namespace WooCommerce\Grow\WMCPA\Integrations;
 
-use \WooCommerce\Grow\WMCPA\Integrations\AbstractIntegration;
+use WooCommerce\Grow\WMCPA\Integrations\AbstractIntegration;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.

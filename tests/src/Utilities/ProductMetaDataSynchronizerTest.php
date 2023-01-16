@@ -3,8 +3,8 @@
 namespace WooCommerce\Grow\WMCPA\Tests\Utilities;
 
 use \WP_UnitTestCase;
-use \WooCommerce\Grow\WMCPA\Tests\Helpers\ProductHelper;
-use \WooCommerce\Grow\WMCPA\Utilities\ProductMetaDataSynchronizer;
+use WooCommerce\Grow\WMCPA\Tests\Helpers\ProductHelper;
+use WooCommerce\Grow\WMCPA\Utilities\ProductMetaDataSynchronizer;
 
 /**
  * Collection of tests to test the Product Meta Data Synchronizer.
@@ -14,7 +14,7 @@ class ProductMetaDataSynchronizerTest extends WP_UnitTestCase {
 	/**
 	 * The Product meta data synchronizer instance.
 	 *
-	 * @var \WooCommerce\Grow\WMCPA\Utilities\ProductMetaDataSynchronizer
+	 * @var WooCommerce\Grow\WMCPA\Utilities\ProductMetaDataSynchronizer
 	 */
 	protected static $synchronizer;
 

@@ -7,7 +7,7 @@
 
 namespace WooCommerce\Grow\WMCPA\Utilities;
 
-use \WooCommerce\Grow\WMCPA\MetaFields\Types\Select;
+use WooCommerce\Grow\WMCPA\MetaFields\Types\Select;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.

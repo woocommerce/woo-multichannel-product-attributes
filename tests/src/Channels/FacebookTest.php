@@ -3,7 +3,7 @@
 namespace WooCommerce\Grow\WMCPA\Tests\Channels;
 
 use \WP_UnitTestCase;
-use \WooCommerce\Grow\WMCPA\Tests\Helpers\ProductHelper;
+use WooCommerce\Grow\WMCPA\Tests\Helpers\ProductHelper;
 
 /**
  * A collection of tests for the Facebook channel class.
@@ -13,7 +13,7 @@ class FacebookTest extends WP_UnitTestCase {
 	/**
 	 * The Facebook Channel instance.
 	 *
-	 * @var \WooCommerce\Grow\WMCPA\Channels\Facebook
+	 * @var WooCommerce\Grow\WMCPA\Channels\Facebook
 	 */
 	protected static $channel;
 
