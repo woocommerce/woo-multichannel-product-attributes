@@ -34,10 +34,5 @@
 		"platform": {
 			"php": "7.4"
 		}
-	},
-    "archive": {
-        "exclude": [
-            "node_modules/"
-        ]
-    }
+	}
 }
