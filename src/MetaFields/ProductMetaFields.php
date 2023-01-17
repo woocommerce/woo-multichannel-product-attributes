@@ -42,11 +42,18 @@ class ProductMetaFields {
 		}
 
 		if ( ! empty( $meta_fields ) ) {
+			$has_changes = false;
+
 			foreach ( $meta_fields as $meta => $value ) {
-				$product->update_meta_data( $meta, $value );
+				if ( $value['before'] !== $value['after'] ) {
+					$product->update_meta_data( $meta, $value['after'] );
+					$has_changes = true;
+				}
 			}
 
-			// $product->save_meta_data(); TODO: There are some racing conditions that needs to be resolved.
+			if ( $has_changes ) {
+				$product->save_meta_data();
+			}
 		}
 	}
 
@@ -79,8 +86,13 @@ class ProductMetaFields {
 	 * @param array $field The field arguments.
 	 */
 	public static function render_field( $field ) {
+		$field_name    = $field['name'];
+		$field['name'] = $field_name . '[after]';
 		if ( 'select' === $field['type'] ) {
 			Select::render( $field );
 		}
+		?>
+		<input type="hidden" name="<?php echo esc_attr( $field_name ); ?>[before]" value="<?php echo esc_attr( $field['value'] ); ?>">
+		<?php
 	}
 }

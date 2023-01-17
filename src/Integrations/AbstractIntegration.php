@@ -59,7 +59,10 @@ abstract class AbstractIntegration {
 		if ( $this->has_tab ) {
 			add_filter( 'woo_mcpa_channel_get_tab_settings', array( $this, 'override_tab_settings' ) );
 		}
+
+		add_filter( 'wmcpa_related_channel_meta_value', array( $this, 'override_meta_value' ), 10, 2 );
 	}
+
 
 	/**
 	 * Initialize the integration.
@@ -87,5 +90,22 @@ abstract class AbstractIntegration {
 		}
 
 		return $is_activated;
+	}
+
+	/**
+	 * Override meta value.
+	 *
+	 * @param mixed  $value The meta value to be overriden.
+	 * @param string $key   The meta key.
+	 * @return mixed
+	 */
+	public function override_meta_value( $value, $key ) {
+		if ( isset( $this->keys_for_meta_value_overrides ) && in_array( $key, $this->keys_for_meta_value_overrides, true ) ) {
+			if ( is_callable( array( $this, 'get_overridden_meta_value' ) ) ) {
+				$value = $this->get_overridden_meta_value( $value, $key );
+			}
+		}
+
+		return $value;
 	}
 }

@@ -119,6 +119,7 @@ class ProductMetaDataSynchronizer {
 
 		$product = wc_get_product( $product_id );
 		foreach ( $keys as $key ) {
+			$value = apply_filters( 'wmcpa_related_channel_meta_value', $value, $key );
 			$product->update_meta_data( $key, $value );
 		}
 		$product->save_meta_data();

@@ -5,6 +5,7 @@ namespace WooCommerce\Grow\WMCPA\Tests\Utilities;
 use \WP_UnitTestCase;
 use WooCommerce\Grow\WMCPA\Tests\Helpers\ProductHelper;
 use WooCommerce\Grow\WMCPA\Utilities\ProductMetaDataSynchronizer;
+use WooCommerce\Grow\WMCPA\Integrations\FacebookForWooCommerce;
 
 /**
  * Collection of tests to test the Product Meta Data Synchronizer.
@@ -26,6 +27,13 @@ class ProductMetaDataSynchronizerTest extends WP_UnitTestCase {
 	protected static $product;
 
 	/**
+	 * Load the Integration.
+	 *
+	 * @var WooCommerce\Grow\WMCPA\Integrations\AbstractIntegration;
+	 */
+	protected $integration;
+
+	/**
 	 * Setup the instance and product.
 	 */
 	public function setUp(): void {
@@ -33,6 +41,7 @@ class ProductMetaDataSynchronizerTest extends WP_UnitTestCase {
 
 		$this->synchronizer = ProductMetaDataSynchronizer::instance();
 		$this->product      = ProductHelper::create_simple_product();
+		$this->integration  = new FacebookForWooCommerce();
 	}
 
 	/**
@@ -60,6 +69,38 @@ class ProductMetaDataSynchronizerTest extends WP_UnitTestCase {
 		$this->display_meta( $product->get_id() );
 
 		$this->assertTrue( false, 'Sync product meta data failed.' );
+	}
+
+	/**
+	 * Test meta value override.
+	 */
+	public function test_meta_value_override() {
+		$synchronizer = $this->synchronizer;
+		$product      = $this->product;
+
+		$this->integration->integrate();
+
+		$product->update_meta_data( 'google_product_category', '3237' );
+		$product->save_meta_data();
+
+		$updated_product = wc_get_product( $product->get_id() );
+
+		echo "\n";
+		echo 'P: ' . $updated_product->get_meta( 'google_product_category' ) . "\n";
+		echo 'FB: ' . $updated_product->get_meta( 'wc_facebook_google_product_category_id' ) . "\n";
+		echo 'PIN: ' . $updated_product->get_meta( '_wc_pinterest_google_product_category' ) . "\n";
+
+		$product->update_meta_data( 'google_product_category', 'Animals & Pet Supplies > Live Animals' );
+		$product->save_meta_data();
+
+		$updated_product = wc_get_product( $product->get_id() );
+
+		echo "\n";
+		echo 'P: ' . $updated_product->get_meta( 'google_product_category' ) . "\n";
+		echo 'FB: ' . $updated_product->get_meta( 'wc_facebook_google_product_category_id' ) . "\n";
+		echo 'PIN: ' . $updated_product->get_meta( '_wc_pinterest_google_product_category' ) . "\n";
+
+		$this->assertTrue( false, 'Meta value override failed.' );
 	}
 
 	private function display_meta( $product_id ) {
