@@ -48,7 +48,7 @@ class FacebookForWooCommerce extends AbstractIntegration {
 	 *
 	 * @var array
 	 */
-	protected $keys_for_meta_value_overrides = array( 'wc_facebook_google_product_category_id', '_wc_pinterest_google_product_category' );
+	protected $keys_for_meta_value_overrides = array( '_wc_facebook_google_product_category', '_wc_pinterest_google_product_category' );
 
 	/**
 	 * Override tab settings.
